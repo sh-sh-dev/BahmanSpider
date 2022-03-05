@@ -36,3 +36,7 @@ Simulated form of each registration is available at `test-forms/` directory.
 
 * `new.php`: Tested at 1400/12/14 and works properly.
 * `old.php`: Old Iranecar version. This file is invalid after 1400/10
+
+## Queue Monitor
+
+Are you stuck in the validation process? Just give your `queueId` and `orderId` to this script. It will keep sending request to the `CheckResult` endpoint until get payment link. (This script never stops working. needs manually terminate using `Ctrl+C`) 
