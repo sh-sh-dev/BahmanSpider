@@ -60,7 +60,6 @@ function bahmanAPI(string $endpoint, array $data = [], string $method = 'GET', s
         'Sec-Fetch-Site: same-site',
         'Sec-Fetch-Mode: cors',
         'Sec-Fetch-Dest: empty',
-        'Accept-Encoding: gzip, deflate',
         'Accept-Language: en-US,en;q=0.9,fa;q=0.8',
         'Accept: application/json, text/plain, */*',
     ]);
