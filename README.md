@@ -29,3 +29,10 @@ You can use ID Finder to expand your car ID list.
 We use this script to understand car ids and find new cars before their official registration. 
 
 Set a cron-job for every 6-hour to check data.
+
+## Forms
+
+Simulated form of each registration is available at `test-forms/` directory.
+
+* `new.php`: Tested at 1400/12/14 and works properly.
+* `old.php`: Old Iranecar version. This file is invalid after 1400/10
