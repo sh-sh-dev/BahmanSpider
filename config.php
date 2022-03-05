@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('Asia/Tehran');
+
 // Global Area
 
 $botToken = '123:abc';
