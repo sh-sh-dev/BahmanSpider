@@ -53,6 +53,16 @@ function bahmanAPI(string $endpoint, array $data = [], string $method = 'GET', s
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         'Origin: https://bahman.iranecar.com',
         'Referrer: https://bahman.iranecar.com/',
+        'Dnt: 1',
+        'Sec-Ch-Ua: \"Google Chrome\";v=\"98\", \" Not;A Brand\";v=\"99\", \"Chromium\";v=\"98\"',
+        'Sec-Ch-Ua-Mobile: ?0',
+        'Sec-Ch-Ua-Platform: \"Windows\"',
+        'Sec-Fetch-Site: same-site',
+        'Sec-Fetch-Mode: cors',
+        'Sec-Fetch-Dest: empty',
+        'Accept-Encoding: gzip, deflate',
+        'Accept-Language: en-US,en;q=0.9,fa;q=0.8',
+        'Accept: application/json, text/plain, */*',
     ]);
     curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0 Safari/537.36');
 
