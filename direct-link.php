@@ -1,17 +1,17 @@
 <?php
 require_once 'common.php';
 
-global $car, $wantedColorWithPriority, $wantedOptionsWithPriority, $wantedTypeWithPriority;
+global $carId, $typeId, $optionCode, $colorPreference;
 
 $totalRetryCount = 5;
 $remainingRetryCounts = $totalRetryCount;
 
 $selectedColor = null;
-$db = null;
+$circulationsList = null;
 
-while (!$db && $remainingRetryCounts >= 1) {
-    $db = getCirculations($car);
-    notify('tried for ' . ($totalRetryCount - $remainingRetryCounts) . 'th time. result: ' . json_encode($db));
+while (!$circulationsList && $remainingRetryCounts >= 1) {
+    $circulationsList = getCirculations($carId);
+    notify('tried for ' . ($totalRetryCount - $remainingRetryCounts) . 'th time. result: ' . json_encode($circulationsList));
     $remainingRetryCounts--;
 }
 
@@ -22,29 +22,34 @@ if ($remainingRetryCounts === 0)
         'checks' => $totalRetryCount
     ]));
 
-$adorableColor = findAdorableColor($wantedColorWithPriority);
+$circulation = selectCirculationFromList($circulationsList, $typeId);
+$color = findAdorableColor($circulation, $colorPreference);
+$option = findAdorableOption($circulation, $optionCode);
 
-$links = getLinks($db, $adorableColor->colorCode);
+$links = getLinks($circulation, $color, $option);
 
 echo json_encode([
-    'selected-color' => [
-        'argument' => $selectedColor,
-        'array' => $adorableColor
-    ],
-    'links' => $links
+    'links' => $links,
+    'selected-color' => $color,
 ], JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
 
 notify(json_encode($links, JSON_PRETTY_PRINT));
 
-function getLinks($db, $colCode) {
-    $pId = $db->productId; // or maybe productGroup / carId
-    $cId = $db->id;
-    $cRow = $db->crcl_row;
-    $col = $db->circulationColors[0]->id;
+function getLinks($circulation, $color, $option) {
+    $pId = $circulation->productId; // or maybe productGroup / carId
+    $cId = $circulation->id;
+    $cRow = $circulation->crcl_row;
+    $col = $color->id;
+    $colCode = $color->colorCode;
+
+    $formLink = "https://bahman.iranecar.com/registration?pId=$pId&cId=$cId&cRow=$cRow&col=$col&colCode=$colCode";
+
+    if ($option)
+        $formLink .= '&op=' . $option->id;
 
     return [
-        'select-trim' => "https://bahman.iranecar.com/product-group/$pId/circulations/ticket/no-ticket",
+        'select-type' => "https://bahman.iranecar.com/product-group/$pId/circulations/ticket/no-ticket",
         'select-color' => "https://bahman.iranecar.com/product-group/$pId/circulation/$cId/options/ticket/no-ticket",
-        'form' => "https://bahman.iranecar.com/registration?pId=$pId&cId=$cId&cRow=$cRow&col=$col&colCode=$colCode",
+        'form' => $formLink
     ];
 }

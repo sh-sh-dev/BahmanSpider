@@ -87,27 +87,43 @@ function getCirculations(int $carId) {
         'GetCirculationData',
         [ 'CarModelId' => $carId ],
         'POST'
-    )[0];
+    );
 }
 
-function findAdorableColor(array $wantedColorWithPriority) {
-    global $db, $selectedColor;
+function selectCirculationFromList($circulationsList, $wantedType) {
+    if (count($circulationsList) === 1 || !$wantedType)
+        return $circulationsList[0];
 
-    $availableColors = removeArabic(array_column($db->circulationColors, 'plainColor'));
+    $carIds = array_column($circulationsList, 'carId');
 
-    foreach ($wantedColorWithPriority as $color) {
+    return $circulationsList[(array_search($wantedType, $carIds) ?: 0)];
+}
+
+function findAdorableColor($circulation, array $colorPreference) {
+    $availableColors = removeArabic(array_column($circulation->circulationColors, 'plainColor'));
+
+    foreach ($colorPreference as $color) {
         if ($color === '*') {
-            $selectedColor = $color;
-            return $db->circulationColors[0];
+            $circulation->circulationColors[0]->programInput = '*';
+            return $circulation->circulationColors[0];
         }
 
         $colorIndex = array_search($color, $availableColors);
 
         if ($colorIndex !== false) {
-            $selectedColor = $color;
-            return $db->circulationColors[$colorIndex];
+            $circulation->circulationColors[$colorIndex]->programInput = $color;
+            return $circulation->circulationColors[$colorIndex];
         }
     }
 
     return null;
+}
+
+function findAdorableOption($circulation, $optionCode) {
+    if (count($circulation->options) === 0 || !$optionCode)
+        return null;
+
+    $optionsList = array_column($circulation->options, 'optionCode');
+
+    return $circulation->options[(array_search($optionCode, $optionsList) ?: 0)];
 }

@@ -8,22 +8,21 @@ $channel = '123';
 
 // Direct Link Area
 
-$car = 100;
+$carId = 100;
 
-$wantedColorWithPriority = [
-    'سفید',
-    'مشکی متالیک',
-    'خاکستری کهکشانی',
-    'سربی',
-    'آبی اطلسی',
-    'قرمز روناسی',
+$typeId = 127;
+
+$optionCode = 3400;
+
+$colorPreference = [
+    'سفید', // 295
+    'مشکی متالیک', // 3
+    'خاکستری کهکشانی', // 298
+    'سربی متالیک', // 60
+    'آبی اطلسی', // 301
+    'قرمز روناسی', // 304
     '*',
 ];
-
-$wantedOptionsWithPriority = []; // Soon
-
-$wantedTypeWithPriority = []; // Soon
-
 
 // ID Finder
 

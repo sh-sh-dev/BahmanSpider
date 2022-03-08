@@ -9,12 +9,12 @@ Note: Setting of this script can be find in `config.php`
 
 #### Configuration
 
-* `car` Car ID to get links for (use below table)
 * `botToken` Telegram Bot API token
 * `channel` Telegram Chat ID to get links and messages 
+* `carId` Car ID to get links for (use below table)
 
-| #   | Name     |
-|-----|----------|
+| # | Name |
+| ----- | ---------- |
 | 55 | B30 |
 | 93 | Kara Dual Cabin  |
 | 94 | Kara Single Cabin |
@@ -22,8 +22,20 @@ Note: Setting of this script can be find in `config.php`
 | **100** | **Fidelity** |
 | 104 | Capra 4DW |
 | 106 | EmPower |
+_You can also use the ID Finder script to expand your list._
 
-You can use ID Finder to expand your car ID list.
+* `typeId` Some cars have different types or trims (like Dignity/Fidelity), and you should select it using this variable (Use below table)
+
+| Car | Types | Code |
+| ----- | ------------- | ----- |
+| Dignity | _Trim:_ Red, Black | SOON |
+| Fidelity | _Seats:_ 5, 7 | `127`, `128` |
+
+* `optionCode` Customers can select multiple options for some cars (like Fidelity's wheel rings)
+
+| Car | Description | Code |
+| ----- | ------------- | ----- |
+| Fidelity | _Rings:_ 20-11 (Sport one), 20-12 (5 Par) | `3400`, `3500` |
 
 ## ID Finder
 
@@ -35,8 +47,8 @@ Set a cron-job for every 6-hour to check data.
 
 Simulated form of each registration is available at `test-forms/` directory.
 
-* `new.php`: Tested at 1400/12/17 and works properly.
-* `old.php`: Old Iranecar version. This file is invalid after 1400/10
+* `new.php` Tested at 1400/12/17 and works properly.
+* `old.php` Old Iranecar version. This file is invalid after 1400/10
 
 ## Queue Monitor
 
