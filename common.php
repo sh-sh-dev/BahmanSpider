@@ -33,9 +33,9 @@ function notify(string $message) {
     ]);
 }
 
-function bahmanAPI(string $endpoint, array $data = [], string $method = 'GET', string $domain = 'customer') {
+function bahmanAPI(string $endpoint, array $data = [], string $method = 'GET', string $domain = 'customer-api') {
     $ch = curl_init();
-    $url = "https://bahman-$domain-api.iranecar.com/api/$endpoint";
+    $url = "https://bahman-$domain.iranecar.com/api/$endpoint";
 
     if ($method === 'POST') {
         curl_setopt($ch, CURLOPT_POST, true);

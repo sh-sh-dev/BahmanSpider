@@ -41,3 +41,11 @@ Simulated form of each registration is available at `test-forms/` directory.
 ## Queue Monitor
 
 Are you stuck in the validation process? Just give your `queueId` and `orderId` to this script. It will keep sending request to the `CheckResult` endpoint until get payment link. (This script never stops working. needs manually terminate using `Ctrl+C`) 
+
+## Home Checker
+
+This script checks Bahman's home items and notifies you when home something is available to buy.
+
+Example Usages:
+* Finding test circulations
+* Get notified when circulation published at sell days (example: sometimes they publish circulations at 10:03 instead of 10:00; and we can't refresh the website every 30 seconds)
