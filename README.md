@@ -15,12 +15,13 @@ Note: Setting of this script can be find in `config.php`
 
 | #   | Name     |
 |-----|----------|
-| 55  | B30 |
-| 93  | Kara Single Cabin  |
-| 94  | Kara Dual Cabin  |
-| 96  | **Dignity**  |
-| 100 | **Fidelity** |
-| 106 | M Power |
+| 55 | B30 |
+| 93 | Kara Dual Cabin  |
+| 94 | Kara Single Cabin |
+| **96** | **Dignity** |
+| **100** | **Fidelity** |
+| 104 | Capra 4DW |
+| 106 | EmPower |
 
 You can use ID Finder to expand your car ID list.
 
@@ -34,7 +35,7 @@ Set a cron-job for every 6-hour to check data.
 
 Simulated form of each registration is available at `test-forms/` directory.
 
-* `new.php`: Tested at 1400/12/14 and works properly.
+* `new.php`: Tested at 1400/12/17 and works properly.
 * `old.php`: Old Iranecar version. This file is invalid after 1400/10
 
 ## Queue Monitor
